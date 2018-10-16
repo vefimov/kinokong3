@@ -1,4 +1,7 @@
 {
   "extends": "react-app",
-  "plugins": ["prettier"]
+  "plugins": ["prettier"],
+  "rules": {
+    "object-curly-spacing": ["error", "always"]
+  }
 }
