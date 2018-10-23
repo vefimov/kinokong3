@@ -1,19 +1,28 @@
 import React, { Component } from 'react';
 
+import LoadingSpinner from '../../components/LoadingSpinner';
+import SimpleSlider from '../../components/Slick';
+import { getMovieCovers } from '../../services/movies';
+import MovieCover from '../../components/MovieCover';
+
 class Home extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { show: true };
+  state = {
+    loading: true,
+    movieCovers: [], // Initial value
+  };
+
+  async componentDidMount() {
+    const movieCovers = await getMovieCovers('/film/novinki-kinos/');
+
+    this.setState({ movieCovers, loading: false });
   }
 
-  componentDidMount() {}
+  renderMovieCovers() {
+    return this.state.movieCovers.map(movieCover => <MovieCover key={movieCover.url} {...movieCover} />);
+  }
 
   render() {
-    return (
-      <div>
-        <h1>Home page,width films!</h1>
-      </div>
-    );
+    return this.state.loading ? <LoadingSpinner /> : this.renderMovieCovers();
   }
 }
 
