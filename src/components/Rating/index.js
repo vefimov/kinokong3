@@ -1,8 +1,9 @@
 import React, { PureComponent } from 'react';
 
+import './index.css';
+
 class Rating extends PureComponent {
   render() {
-    console.log(this.props);
     return (
       <div>
         <button type="button" className="btn btn-default">

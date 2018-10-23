@@ -1,0 +1,12 @@
+.movie-cover figure {
+  padding: 10px;
+  width: 200px;
+  float: left;
+  margin: 10px 49px 10px 0;
+  text-align: center;
+}
+
+.movie-cover .title{
+  font-size: 30px;
+  text-align: center;
+}

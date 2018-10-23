@@ -10,7 +10,7 @@ const config = {
     },
     {
       title: 'Coming soon',
-      url: 'novelty',
+      url: '/novelty',
     },
   ],
 };
