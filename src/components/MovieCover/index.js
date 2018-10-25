@@ -3,6 +3,7 @@ import React, { PureComponent } from 'react';
 import Rating from '../Rating';
 
 import './index.css';
+import { Link } from 'react-router-dom';
 
 class MovieCover extends PureComponent {
   render() {
@@ -16,7 +17,7 @@ class MovieCover extends PureComponent {
           </h2>
           <img className="img-responsive" src={coverImage} alt={title} width="100%" />
           <Rating rating={rating} />
-          <a href={url}>Online</a>
+          <Link to="/movie">Watch</Link>
         </figure>
       </div>
     );

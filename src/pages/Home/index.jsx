@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 import LoadingSpinner from '../../components/LoadingSpinner';
-import SimpleSlider from '../../components/Slick';
 import { getMovieCovers } from '../../services/movies';
 import MovieCover from '../../components/MovieCover';
 

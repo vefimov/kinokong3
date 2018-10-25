@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Nav, NavItem, Navbar } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
 import './index.css';
 
 class Navigation extends Component {

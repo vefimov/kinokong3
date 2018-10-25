@@ -7,6 +7,7 @@ import config from './components/config';
 import Serials from './pages/Serials';
 import Home from './pages/Home';
 import NewFilms from './pages/NewFilms';
+import FilmDetails from './pages/FilmDetails';
 
 class App extends Component {
   render() {
@@ -15,9 +16,10 @@ class App extends Component {
         <Router history={createHistory()}>
           <div>
             <Navigation menuItems={config.navMenuItems} />
-            <Route exact path="/" component={Home} />
+            <Route exact path="/films" component={Home} />
             <Route path="/serials" component={Serials} />
             <Route path="/novelty" component={NewFilms} />
+            <Route path="/movie" component={FilmDetails} />
           </div>
         </Router>
       </div>
