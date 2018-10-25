@@ -16,10 +16,10 @@ class App extends Component {
         <Router history={createHistory()}>
           <div>
             <Navigation menuItems={config.navMenuItems} />
-            <Route exact path="/films" component={Home} />
+            <Route exact path="/" component={Home} />
             <Route path="/serials" component={Serials} />
             <Route path="/novelty" component={NewFilms} />
-            <Route path="/movie/:Id" component={FilmDetails} />
+            <Route path="/movie/:id" component={FilmDetails} />
           </div>
         </Router>
       </div>
