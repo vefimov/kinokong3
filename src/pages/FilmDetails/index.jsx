@@ -1,25 +1,20 @@
 import React, { Component } from 'react';
 
-import LoadingSpinner from '../../components/LoadingSpinner';
-import { getMovieCovers } from '../../services/movies';
-import MovieCover from '../../components/MovieCover';
 import { Col, Grid, Image, Row } from 'react-bootstrap';
 import './index.css';
 
 class FilmDetails extends Component {
   render() {
+    const { url, title, coverImage } = this.props;
+    console.log(this.props);
     return (
       <Grid>
         <Row className="show-grid">
           <Col xs={10} md={4} mdOffset={1}>
-            <Image
-              src="https://mir24.tv/uploaded/images/2017/December/dc976ec848368fe8ca7f5212316fc7f438c802d421b410d6ade1da7d6fa41ace.jpg"
-              rounded
-              width="300"
-            />
+            <Image src={coverImage} rounded width="300" />
           </Col>
           <Col className="description" xs={10} md={6}>
-            <h1 className="title">Movie name</h1>
+            <h1 className="title">{title}</h1>
             <ul className="info">
               <li>Жанр</li>
               <li>Год выпуска</li>
@@ -29,7 +24,7 @@ class FilmDetails extends Component {
         </Row>
         <Row>
           <Col xs={10} md={10} mdOffset={1}>
-            <h1>Movie name</h1>
+            <h1>{title}</h1>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam consequatur excepturi, nesciunt nobis
               quo rem repellendus sed voluptates! Alias autem est facere magni nihil provident qui quidem rem
