@@ -5,16 +5,18 @@ import './index.css';
 
 class FilmDetails extends Component {
   render() {
-    const { url, title, coverImage } = this.props;
-    console.log(this.props);
     return (
       <Grid>
         <Row className="show-grid">
           <Col xs={10} md={4} mdOffset={1}>
-            <Image src={coverImage} rounded width="300" />
+            <Image
+              src="http://kinokong2.com/uploads/posts/2018-06/1529074875-640255182-supersemeyka-2.jpg"
+              rounded
+              width="300"
+            />
           </Col>
           <Col className="description" xs={10} md={6}>
-            <h1 className="title">{title}</h1>
+            <h1 className="title">Movie Name</h1>
             <ul className="info">
               <li>Жанр</li>
               <li>Год выпуска</li>
@@ -24,7 +26,7 @@ class FilmDetails extends Component {
         </Row>
         <Row>
           <Col xs={10} md={10} mdOffset={1}>
-            <h1>{title}</h1>
+            <h1 className="title">Movie Name</h1>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam consequatur excepturi, nesciunt nobis
               quo rem repellendus sed voluptates! Alias autem est facere magni nihil provident qui quidem rem
