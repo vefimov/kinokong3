@@ -8,6 +8,7 @@ import Serials from './pages/Serials';
 import Home from './pages/Home';
 import NewFilms from './pages/NewFilms';
 import FilmDetails from './pages/FilmDetails';
+import FilmDis from './pages/FilmDetails/parsedata';
 
 class App extends Component {
   render() {
@@ -19,7 +20,7 @@ class App extends Component {
             <Route exact path="/" component={Home} />
             <Route path="/serials" component={Serials} />
             <Route path="/novelty" component={NewFilms} />
-            <Route path="/movie/:id" component={FilmDetails} />
+            <Route path="/movie/:id" component={FilmDis} />
           </div>
         </Router>
       </div>

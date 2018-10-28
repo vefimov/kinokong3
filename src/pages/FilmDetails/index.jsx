@@ -5,6 +5,7 @@ import './index.css';
 
 class FilmDetails extends Component {
   render() {
+    const { title, story } = this.props;
     return (
       <Grid>
         <Row className="show-grid">
@@ -16,7 +17,7 @@ class FilmDetails extends Component {
             />
           </Col>
           <Col className="description" xs={10} md={6}>
-            <h1 className="title">Movie Name</h1>
+            <h1 className="title">{title}</h1>
             <ul className="info">
               <li>Жанр</li>
               <li>Год выпуска</li>
@@ -26,14 +27,8 @@ class FilmDetails extends Component {
         </Row>
         <Row>
           <Col xs={10} md={10} mdOffset={1}>
-            <h1 className="title">Movie Name</h1>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam consequatur excepturi, nesciunt nobis
-              quo rem repellendus sed voluptates! Alias autem est facere magni nihil provident qui quidem rem
-              repudiandae! Deserunt! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda atque aut cum
-              debitis doloremque, excepturi hic in ipsum iusto minima molestias odit provident, quae, quaerat recusandae
-              sint tempore veritatis vero.
-            </p>
+            <h1 className="title">{title}</h1>
+            <p>{story}</p>
           </Col>
         </Row>
         <Row>

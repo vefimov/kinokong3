@@ -15,7 +15,7 @@ class MovieCover extends PureComponent {
           <h2 className="title">
             <strong>{title}</strong>
           </h2>
-          <Link to={`/movie/${url.replace('http://kinokong2.com/', '-')}`}>
+          <Link to={`/movie${url.replace('http://kinokong2.com/', '/')}`}>
             <img className="img-responsive" src={coverImage} alt={title} width="100%" />
           </Link>
           <a href={url}> Watch</a>
