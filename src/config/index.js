@@ -1,4 +1,5 @@
 const config = {
+  kinokongUrl: '',
   navMenuItems: [
     {
       title: 'Фильмы',

@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import FilmDetails from './pages/MovieDetails';
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
