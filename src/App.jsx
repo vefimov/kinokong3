@@ -7,7 +7,6 @@ import config from './components/config';
 import Serials from './pages/Serials';
 import Home from './pages/Home';
 import NewFilms from './pages/NewFilms';
-
 class App extends Component {
   render() {
     return (
@@ -24,5 +23,4 @@ class App extends Component {
     );
   }
 }
-
 export default App;

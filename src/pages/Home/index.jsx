@@ -1,24 +1,29 @@
 import React, { Component } from 'react';
 
 import LoadingSpinner from '../../components/LoadingSpinner';
-import SimpleSlider from '../../components/Slick';
+import MoviesCarousel from '../../components/MoviesCarousel';
 import { getMovieCovers } from '../../services/movies';
-import MovieCover from '../../components/MovieCover';
 
-class Home extends Component {
+class NewFilms extends Component {
   state = {
     loading: true,
     movieCovers: [], // Initial value
   };
 
   async componentDidMount() {
-    const movieCovers = await getMovieCovers('/film/novinki-kinos/');
+    const movieCovers = await getMovieCovers('/film/');
 
     this.setState({ movieCovers, loading: false });
   }
 
   renderMovieCovers() {
-    return this.state.movieCovers.map(movieCover => <MovieCover key={movieCover.url} {...movieCover} />);
+    const { movieCovers } = this.state;
+
+    return (
+      <div>
+        <MoviesCarousel title="Новинки кино" movieCovers={movieCovers} />
+      </div>
+    );
   }
 
   render() {
@@ -26,4 +31,4 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export default NewFilms;

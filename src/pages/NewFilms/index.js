@@ -1,19 +1,28 @@
 import React, { Component } from 'react';
+import MoviesCarousel from '../../components/MoviesCarousel';
+import { getMovieCovers } from '../../services/movies';
+import LoadingSpinner from '../../components/LoadingSpinner';
 
 class New extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { show: true };
+  state = {
+    loading: true,
+    movieCovers: [], // Initial value
+  };
+  async componentDidMount() {
+    const movieCovers = await getMovieCovers('/film/novinki-kinos/');
+    this.setState({ movieCovers, loading: false });
   }
-
-  componentDidMount() {}
-
-  render() {
+  renderMovieCovers() {
+    const { movieCovers } = this.state;
     return (
       <div>
-        <h1>New Films !!</h1>
+        <MoviesCarousel movieCovers={movieCovers} />
+        <hr />
       </div>
     );
+  }
+  render() {
+    return this.state.loading ? <LoadingSpinner /> : this.renderMovieCovers();
   }
 }
 

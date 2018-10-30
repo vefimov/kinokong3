@@ -1,23 +1,21 @@
 import React, { PureComponent } from 'react';
 
-import Rating from '../Rating';
+import StarRatingComponent from 'react-star-rating-component';
 
 import './index.css';
 
 class MovieCover extends PureComponent {
   render() {
     const { title, coverImage, rating, url } = this.props;
+    const ratingValue = (+rating.likes * 100) / (+rating.likes + +rating.dislikes) / 10;
 
     return (
       <div className="movie-cover">
-        <figure>
-          <h2 className="title">
-            <strong>{title}</strong>
-          </h2>
-          <img className="img-responsive" src={coverImage} alt={title} width="100%" />
-          <Rating rating={rating} />
-          <a href={url}>Online</a>
-        </figure>
+        <img className="img-responsive" src={coverImage} alt={title} width="100%" />
+        <div className="details">
+          <div className="title">{title}</div>
+          <StarRatingComponent name={title} starCount={10} value={ratingValue} />
+        </div>
       </div>
     );
   }

@@ -1,0 +1,11 @@
+.movies-carousel .slick-slider {
+  margin: 10px;
+}
+
+.movies-carousel .slick-slide {
+  margin: 0 10px;
+}
+
+.movies-carousel .slick-list {
+  margin: 0 -10px;
+}

@@ -1,19 +1,35 @@
 import React, { Component } from 'react';
 
+import LoadingSpinner from '../../components/LoadingSpinner';
+import MoviesCarousel from '../../components/MoviesCarousel';
+import { getMovieCovers } from '../../services/movies';
+
 class Serials extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { show: true };
+  state = {
+    loading: true,
+    movieCovers: [], // Initial value
+  };
+
+  async componentDidMount() {
+    const movieCovers = await getMovieCovers('/series/');
+
+    this.setState({ movieCovers, loading: false });
   }
 
-  componentDidMount() {}
+  renderMovieCovers() {
+    const { movieCovers } = this.state;
 
-  render() {
     return (
       <div>
-        <h1>Best serials)</h1>
+        <MoviesCarousel movieCovers={movieCovers} />
+
+        <hr />
       </div>
     );
+  }
+
+  render() {
+    return this.state.loading ? <LoadingSpinner /> : this.renderMovieCovers();
   }
 }
 

@@ -1,15 +1,15 @@
 const config = {
   navMenuItems: [
     {
-      title: 'Films',
+      title: 'Фильмы',
       url: '/films',
     },
     {
-      title: 'Serials',
+      title: 'Сериалы',
       url: '/serials',
     },
     {
-      title: 'Coming soon',
+      title: 'Новинки',
       url: '/novelty',
     },
   ],

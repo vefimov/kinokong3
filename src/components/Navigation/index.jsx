@@ -10,7 +10,7 @@ class Navigation extends Component {
         <Navbar inverse collapseOnSelect>
           <Navbar.Header>
             <Navbar.Brand>
-              <a href="#brand">HALYAVA-MOVIES</a>
+              <a href="/">КиноХалява</a>
             </Navbar.Brand>
             <Navbar.Toggle />
           </Navbar.Header>

@@ -11,12 +11,13 @@
     "jsdom": "^12.2.0",
     "lint-staged": "^7.3.0",
     "prettier": "^1.14.3",
-    "react": "^16.5.2",
+    "react": "^16.6.0",
     "react-bootstrap": "0.32.4",
     "react-dom": "^16.5.2",
     "react-router-dom": "^4.3.1",
     "react-scripts": "^2.0.4",
-    "react-slick": "^0.23.1"
+    "react-slick": "^0.23.1",
+    "react-star-rating-component": "^1.4.1"
   },
   "scripts": {
     "ci": "npm run lint:js",
