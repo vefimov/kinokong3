@@ -8,15 +8,20 @@ export const getMovieDetails = url => {
     const dom = new JSDOM(html);
     const container = dom.window.document.querySelector('#dle-content');
     // TODO[Dmitry]: Use regular expression to match movies
+
+    const url = /\w{4}:\/\/.+?\.\w{2}\d\b/gi;
+
     const movies = container
       .querySelector('#player')
       .nextElementSibling.innerHTML.trim()
-      .replace('var player = new Playerjs({id:"player", file:"[480]', '')
-      .replace('",cuid:"33731"});', '')
-      .split(',[720]');
+      .match(url);
 
     return {
       movies,
+
+      producer: container.querySelector('.full-kino-greybg').textContent,
+      actor: container.querySelector('.full-kino-info1').textContent,
+      info: container.querySelector('.full-kino-info').innerHTML,
       title: container.querySelector('.full-kino-title').textContent.trim(),
       story: container.querySelector('.full-kino-story').innerHTML,
       poster: container.querySelector('.full-poster img').src,
