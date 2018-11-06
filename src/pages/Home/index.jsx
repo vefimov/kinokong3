@@ -2,32 +2,26 @@ import React, { Component } from 'react';
 
 import LoadingSpinner from '../../components/LoadingSpinner';
 import MoviesCarousel from '../../components/MoviesCarousel';
-import { getMovieCovers } from '../../services/movies';
+import { getMovieCovers, getMovieCoversGroupedByType } from '../../services/movies';
 
 class NewFilms extends Component {
   state = {
     loading: true,
-    movieCovers: [], // Initial value
+    movieCoversGroupedByType: null,
   };
 
   async componentDidMount() {
-    const movieCovers = await getMovieCovers('/film/');
+    const movieCoversGroupedByType = await getMovieCoversGroupedByType('/index.php');
 
-    this.setState({ movieCovers, loading: false });
-  }
-
-  renderMovieCovers() {
-    const { movieCovers } = this.state;
-
-    return (
-      <div>
-        <MoviesCarousel title="Новинки кино" movieCovers={movieCovers} />
-      </div>
-    );
+    this.setState({ movieCoversGroupedByType, loading: false });
   }
 
   render() {
-    return this.state.loading ? <LoadingSpinner /> : this.renderMovieCovers();
+    const { loading, movieCoversGroupedByType } = this.state;
+
+    if (loading) return <LoadingSpinner />;
+
+    return movieCoversGroupedByType.map(type => <MoviesCarousel title={type.title} movieCovers={type.movieCovers} />);
   }
 }
 
