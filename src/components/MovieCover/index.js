@@ -11,7 +11,12 @@ class MovieCover extends PureComponent {
 
     return (
       <Link to={url} className="movie-cover">
-        <img className="img-responsive" src={coverImage} alt={title} width="100%" />
+        <div className="image-container">
+          <img className="img-responsive" src={coverImage} alt={title} width="100%" />
+          <div className="overlay">
+            <span className="glyphicon glyphicon-play" aria-hidden="true" />
+          </div>
+        </div>
         <div className="details">
           <div className="title">{title}</div>
           <StarRatingComponent name={title} starCount={10} value={ratingValue} />

@@ -21,3 +21,26 @@
   margin-top: 5px;
   height: 17px;
 }
+
+.movie-cover .image-container:hover .overlay{
+  display: block;
+
+}
+
+.movie-cover .image-container {
+  position: relative;
+}
+
+
+.movie-cover .overlay{
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  font-size: 34px;
+  background-color: rgba(0, 0, 0, 0.5);
+
+}
+
