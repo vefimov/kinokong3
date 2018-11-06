@@ -1,10 +1,21 @@
+// @flow
 import React, { PureComponent } from 'react';
 import StarRatingComponent from 'react-star-rating-component';
 import { Link } from 'react-router-dom';
 
 import './index.css';
 
-class MovieCover extends PureComponent {
+type Props = {
+  title: string,
+  coverImage: string,
+  rating: {
+    likes: string,
+    dislikes: string,
+  },
+  url: string,
+};
+
+class MovieCover extends PureComponent<Props> {
   render() {
     const { title, coverImage, rating, url } = this.props;
     const ratingValue = (+rating.likes * 100) / (+rating.likes + +rating.dislikes) / 10;

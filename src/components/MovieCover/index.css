@@ -1,12 +1,13 @@
 .movie-cover {
   width: 180px;
   height: 315px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-  border: 1px solid rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.1);
   background: #fff;
+  display: block;
 }
 
-.movie-cover .title{
+.movie-cover .title {
   font-size: 16px;
   white-space: nowrap;
   overflow: hidden;
@@ -22,17 +23,19 @@
   height: 17px;
 }
 
-.movie-cover .image-container:hover .overlay{
+.movie-cover .image-container:hover .overlay {
   display: block;
+}
 
+.movie-cover .image-container:hover a {
+  text-decoration: none;
 }
 
 .movie-cover .image-container {
   position: relative;
 }
 
-
-.movie-cover .overlay{
+.movie-cover .overlay {
   display: none;
   position: absolute;
   top: 0;
@@ -41,6 +44,18 @@
   left: 0;
   font-size: 34px;
   background-color: rgba(0, 0, 0, 0.5);
-
 }
 
+.movie-cover .glyphicon-play {
+  font-size: 34px;
+  color: white;
+  border: 1px solid white;
+  border-radius: 50%;
+  padding: 15px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -33px;
+  margin-top: -33px;
+  background-color: rgba(0, 0, 0, 0.5);
+}

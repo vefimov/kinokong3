@@ -8,10 +8,12 @@ class New extends Component {
     loading: true,
     movieCovers: [], // Initial value
   };
+
   async componentDidMount() {
     const movieCovers = await getMovieCovers('/film/novinki-kinos/');
     this.setState({ movieCovers, loading: false });
   }
+
   renderMovieCovers() {
     const { movieCovers } = this.state;
     return (

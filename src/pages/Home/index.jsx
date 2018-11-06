@@ -1,10 +1,31 @@
+// @flow
 import React, { Component } from 'react';
 
 import LoadingSpinner from '../../components/LoadingSpinner';
 import MoviesCarousel from '../../components/MoviesCarousel';
-import { getMovieCovers, getMovieCoversGroupedByType } from '../../services/movies';
+import { getMovieCoversGroupedByType } from '../../services/movies';
 
-class NewFilms extends Component {
+type Props = {};
+
+type State = {
+  loading: boolean,
+  movieCoversGroupedByType: null | Array<{
+    title: string,
+    movieCovers: [
+      {
+        title: string,
+        coverImage: string,
+        rating: {
+          likes: string,
+          dislikes: string,
+        },
+        url: string,
+      },
+    ],
+  }>,
+};
+
+class NewFilms extends Component<Props, State> {
   state = {
     loading: true,
     movieCoversGroupedByType: null,
@@ -21,7 +42,9 @@ class NewFilms extends Component {
 
     if (loading) return <LoadingSpinner />;
 
-    return movieCoversGroupedByType.map(type => <MoviesCarousel title={type.title} movieCovers={type.movieCovers} />);
+    return (movieCoversGroupedByType: any).map(type => (
+      <MoviesCarousel key={type.title} title={type.title} movieCovers={type.movieCovers} />
+    ));
   }
 }
 
