@@ -33,8 +33,8 @@
     }
   },
   "lint-staged": {
-    "*.{css}": [
-      "prettier --config ./.prettierrc --write",
+    "*.css": [
+      "prettier --config ./.prettierrc --write --parser css",
       "git add"
     ],
     "*.{js,jsx}": [
