@@ -1,13 +1,32 @@
 .movies-carousel .slick-slider {
-  margin: 10px;
+  margin: 25px;
 }
 
 .movies-carousel .slick-slide {
-  margin: 0 10px;
+  margin: 0 10px 0 10px;
 }
 
 .movies-carousel .slick-list {
-  margin: 0 -10px;
+  margin: 0 -25px;
+}
+
+@media screen and (min-width: 992px) {
+  .movies-carousel {
+    margin: auto 50px;
+  }
+
+  .movies-carousel .slick-arrow:before {
+    font-size: 40px;
+    color: black;
+  }
+
+  .movies-carousel .slick-next {
+    right: -50px;
+  }
+
+  .movies-carousel .slick-prev {
+    left: -70px;
+  }
 }
 
 .movies-carousel .text {

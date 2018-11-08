@@ -6,10 +6,6 @@
   background: #1d1d1d;
 }
 
-.movie-cover .content-components {
-  position: relative;
-}
-
 .movie-cover .title {
   font-size: 16px;
   white-space: nowrap;
@@ -48,6 +44,7 @@
   left: 0;
   font-size: 34px;
   background-color: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
 }
 
 .movie-cover .glyphicon-play {

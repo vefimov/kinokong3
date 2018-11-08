@@ -1,8 +1,19 @@
+// @flow
 import React, { Component } from 'react';
-import { Nav, NavItem, Navbar } from 'react-bootstrap';
+import { Nav, NavItem, Navbar, NavDropdown, MenuItem } from 'react-bootstrap';
 import './index.css';
 
-class Navigation extends Component {
+type MenuItemType = {
+  title: string,
+  url: string,
+  subItems?: MenuItemType[],
+};
+
+type Props = {
+  menuItems: MenuItemType[],
+};
+
+class Navigation extends Component<Props> {
   render() {
     return (
       <div className="navbar">
@@ -19,11 +30,22 @@ class Navigation extends Component {
           </Navbar.Header>
           <Navbar.Collapse>
             <Nav>
-              {this.props.menuItems.map(menuItem => (
-                <NavItem href={menuItem.url} key={menuItem.url} eventKey={menuItem.url}>
-                  {menuItem.title}{' '}
-                </NavItem>
-              ))}
+              {this.props.menuItems.map(
+                menuItem =>
+                  menuItem.subItems ? (
+                    <NavDropdown id={menuItem.url} key={menuItem.url} title={menuItem.title} eventKey={menuItem.url}>
+                      {menuItem.subItems.map(subItem => (
+                        <MenuItem key={subItem.url} href={subItem.url}>
+                          {subItem.title}
+                        </MenuItem>
+                      ))}
+                    </NavDropdown>
+                  ) : (
+                    <NavItem key={menuItem.url} eventKey={menuItem.url} href={menuItem.url}>
+                      {menuItem.title}
+                    </NavItem>
+                  ),
+              )}
             </Nav>
           </Navbar.Collapse>
         </Navbar>

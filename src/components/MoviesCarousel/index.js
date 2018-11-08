@@ -31,13 +31,31 @@ export default class MoviesCarousel extends Component<Props, State> {
   };
 
   settings = {
-    dots: false,
-    infinite: true,
+    accessibility: true,
     centerMode: false,
+    dots: true,
+    arrows: true,
+    infinite: true,
     speed: 500,
-    arrows: false,
-    variableWidth: true,
+    swipe: true,
     swipeToSlide: true,
+    variableWidth: true,
+    slidesToScroll: 3,
+    displayPrevArrow: true,
+    responsive: [
+      {
+        breakpoint: 991,
+        settings: {
+          swipe: true,
+          dots: false,
+          infinite: true,
+          speed: 500,
+          arrows: false,
+          variableWidth: true,
+          swipeToSlide: true,
+        },
+      },
+    ],
   };
 
   render() {
