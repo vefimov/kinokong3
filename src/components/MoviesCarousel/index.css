@@ -9,3 +9,10 @@
 .movies-carousel .slick-list {
   margin: 0 -10px;
 }
+
+.movies-carousel .text {
+  color: gainsboro;
+  text-align: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}

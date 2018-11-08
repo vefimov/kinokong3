@@ -1,11 +1,17 @@
-.navbar{
-  padding: 0%;
-  margin: 0%;
+.navbar {
+  padding: 0;
+  margin: 0;
+  border-radius: 0;
 }
 
-.navbar .link{
+.navbar .link {
   text-decoration: none;
-  color: darkgrey;
 }
 
+.navbar .header-section {
+  text-align: center;
+}
 
+.navbar .header-section .headline {
+  padding-top: 15px;
+}

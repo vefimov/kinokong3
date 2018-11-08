@@ -2,9 +2,12 @@
   width: 180px;
   height: 315px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  background: #fff;
   display: block;
+  background: #1d1d1d;
+}
+
+.movie-cover .content-components {
+  position: relative;
 }
 
 .movie-cover .title {
@@ -12,6 +15,7 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  color: ivory;
 }
 
 .movie-cover .details {

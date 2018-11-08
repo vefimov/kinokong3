@@ -9,7 +9,11 @@ class Navigation extends Component {
         <Navbar inverse collapseOnSelect>
           <Navbar.Header>
             <Navbar.Brand>
-              <a href="/">КиноХалява</a>
+              <div className="header-section">
+                <a href="/">
+                  <strong>КиноХалява</strong>
+                </a>
+              </div>
             </Navbar.Brand>
             <Navbar.Toggle />
           </Navbar.Header>
