@@ -3,11 +3,13 @@ import { Router, Route } from 'react-router-dom';
 import createHistory from 'history/createBrowserHistory';
 
 import Navigation from './components/Navigation';
+import Search from './components/Search';
 import config from './config';
 import Serials from './pages/Serials';
 import Home from './pages/Home';
 import NewFilms from './pages/NewFilms';
 import MovieDetails from './pages/MovieDetails';
+import SearchPage from './pages/SearchPage';
 
 class App extends Component {
   render() {
@@ -16,10 +18,12 @@ class App extends Component {
         <Router history={createHistory()}>
           <div>
             <Navigation menuItems={config.navMenuItems} />
+            <Search />
             <Route exact path="/" component={Home} />
             <Route path="/serials" component={Serials} />
             <Route path="/novelty" component={NewFilms} />
             <Route path="/movie/:id" component={MovieDetails} />
+            <Route path="/search/:query" component={SearchPage} />
           </div>
         </Router>
       </div>

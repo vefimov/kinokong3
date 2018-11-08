@@ -1,13 +1,15 @@
+// @flow
 import { JSDOM } from 'jsdom';
 import jQuery from 'jquery';
 
 import config from '../config';
+import { unicodeToWin1251 } from './utils';
 
+// $FlowFixMe
 export const getMovieDetails = url => {
   return jQuery.get(`${config.kinokongUrl}${url}`).then(html => {
     const dom = new JSDOM(html);
     const container = dom.window.document.querySelector('#dle-content');
-    // TODO[Dmitry]: Use regular expression to match movies
 
     const url = /\w{4}:\/\/.+?\.\w{2}\d\b/gi;
 
@@ -29,6 +31,50 @@ export const getMovieDetails = url => {
   });
 };
 
+export const searchMovies = (query: string) => {
+  return jQuery
+    .post(`${config.kinokongUrl}/index.php?do=search`, {
+      do: 'search',
+      subaction: 'search',
+      search_start: 1,
+      full_search: 0,
+      result_from: 1,
+      story: unicodeToWin1251(query),
+    })
+    .then(html => {
+      const dom = new JSDOM(html);
+      const movieElements = dom.window.document.querySelectorAll('.owl-item .item');
+      const movieCovers = [];
+
+      movieElements.forEach(element => {
+        const coverImage = element.querySelector('.main-sliders-img > img').src;
+        const title = element.querySelector('.main-sliders-title').textContent;
+        const url = element.querySelector('.main-sliders-bg > a').href.replace('http://kinokong2.com', '/movie');
+        const ratingElements = element.querySelectorAll('.main-sliders-rate a');
+
+        const movieCover = {
+          coverImage,
+          title,
+          url,
+          // rating: {
+          //   likes: ratingElements[0].textContent.trim(),
+          //   dislikes: ratingElements[1].textContent.trim(),
+          // },
+        };
+
+        movieCovers.push(movieCover);
+      });
+
+      debugger;
+
+      return movieCovers;
+    })
+    .catch(error => {
+      console.error(error);
+    });
+};
+
+// $FlowFixMe
 export const getMovieCovers = url => {
   return jQuery
     .get(`${config.kinokongUrl}${url}`)
@@ -63,6 +109,7 @@ export const getMovieCovers = url => {
     });
 };
 
+// $FlowFixMe
 export const getMovieCoversGroupedByType = url => {
   return jQuery
     .get(`${config.kinokongUrl}${url}`)
