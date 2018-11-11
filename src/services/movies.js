@@ -50,7 +50,6 @@ export const searchMovies = (query: string) => {
         const coverImage = element.querySelector('.main-sliders-img > img').src;
         const title = element.querySelector('.main-sliders-title').textContent;
         const url = element.querySelector('.main-sliders-bg > a').href.replace('http://kinokong2.com', '/movie');
-        const ratingElements = element.querySelectorAll('.main-sliders-rate a');
 
         const movieCover = {
           coverImage,

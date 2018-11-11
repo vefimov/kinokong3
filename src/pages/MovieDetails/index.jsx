@@ -24,6 +24,7 @@ export default class MovieDetails extends Component {
   }
 
   renderMovieDetails() {
+    console.log(this.props);
     const { movieDetails } = this.state;
     const { title, story, poster, movies, info, actor, producer } = movieDetails;
 
