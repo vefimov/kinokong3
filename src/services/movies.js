@@ -156,17 +156,21 @@ export const getMenuItems = url => {
     .get(`${config.kinokongUrl}${url}`)
     .then(html => {
       const dom = new JSDOM(html);
-      const movieElements = dom.window.document.querySelectorAll(
-        '#ul > [class*="reset top-menu"], #li > [class*="reset top-menu"]',
-      );
+      const menuElements = dom.window.document.querySelectorAll('ul [class*="reset top-menu"]');
+
       const menuItems = [];
 
-      movieElements.forEach(element => {
-        const title = element.querySelector('em > a').a;
-        const url = element.querySelector('a').href.replace('http://kinokong2.com', '/movie/');
+      menuElements.forEach(element => {
+        const title = element.querySelector('reset top-menu > li').textContent;
+        const url = element.querySelector('reset top-menu > a').href.replace('http://kinokong2.com', '/movie/');
+        const subItems = dom.window.document.querySelectorAll('reset top-menu > em a');
         const menuItem = {
           title,
           url,
+          subItems: {
+            title: subItems[0].textContent.trim(),
+            url: subItems[1].textContent.trim(),
+          },
         };
 
         menuItems.push(menuItem);
