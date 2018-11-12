@@ -3,7 +3,7 @@ import { Router, Route } from 'react-router-dom';
 import createHistory from 'history/createBrowserHistory';
 
 import Navigation from './components/Navigation';
-
+import { getMenuItems } from './services/movies';
 import config from './config';
 import Serials from './pages/Serials';
 import Home from './pages/Home';
@@ -12,6 +12,16 @@ import MovieDetails from './pages/MovieDetails';
 import SearchPage from './pages/SearchPage';
 
 class App extends Component {
+  async componentDidMount() {
+    const menuItems = await getMenuItems('/index.php');
+    this.setState({ menuItems, loading: false });
+    menuItems(this.props.match.params.query);
+  }
+  renderMenuItems() {
+    const { menuItems } = this.state;
+    const { title, url } = menuItems;
+    return <Navigation title={title} url={url} />;
+  }
   render() {
     return (
       <div>
