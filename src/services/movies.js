@@ -50,16 +50,11 @@ export const searchMovies = (query: string) => {
         const coverImage = element.querySelector('.main-sliders-img > img').src;
         const title = element.querySelector('.main-sliders-title').textContent;
         const url = element.querySelector('.main-sliders-bg > a').href.replace('http://kinokong2.com', '/movie');
-        const ratingElements = element.querySelectorAll('.main-sliders-rate a');
 
         const movieCover = {
           coverImage,
           title,
           url,
-          // rating: {
-          //   likes: ratingElements[0].textContent.trim(),
-          //   dislikes: ratingElements[1].textContent.trim(),
-          // },
         };
 
         movieCovers.push(movieCover);
@@ -151,6 +146,33 @@ export const getMovieCoversGroupedByType = url => {
       });
 
       return movieCoversGroupedByType;
+    })
+    .catch(error => {
+      console.error(error);
+    });
+};
+export const getMenuItems = url => {
+  return jQuery
+    .get(`${config.kinokongUrl}${url}`)
+    .then(html => {
+      const dom = new JSDOM(html);
+      const movieElements = dom.window.document.querySelectorAll(
+        '#ul > [class*="reset top-menu"], #li > [class*="reset top-menu"]',
+      );
+      const menuItems = [];
+
+      movieElements.forEach(element => {
+        const title = element.querySelector('em > a').a;
+        const url = element.querySelector('a').href.replace('http://kinokong2.com', '/movie/');
+        const menuItem = {
+          title,
+          url,
+        };
+
+        menuItems.push(menuItem);
+      });
+
+      return menuItems;
     })
     .catch(error => {
       console.error(error);

@@ -4,12 +4,14 @@
   border-radius: 0;
 }
 
-.navbar .link {
+.navbar a {
   text-decoration: none;
+  color: darkgrey;
 }
 
 .navbar .header-section {
   text-align: center;
+  text-decoration: none;
 }
 
 .navbar .header-section .headline {
