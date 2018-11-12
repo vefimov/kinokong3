@@ -15,7 +15,7 @@ class App extends Component {
   async componentDidMount() {
     const menuItems = await getMenuItems('/index.php');
     this.setState({ menuItems, loading: false });
-    menuItems(this.props.match.params.query);
+    menuItems(this.props);
   }
   renderMenuItems() {
     const { menuItems } = this.state;
