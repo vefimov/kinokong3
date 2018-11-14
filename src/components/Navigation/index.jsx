@@ -1,7 +1,6 @@
 // @flow
 import React, { Component } from 'react';
 import Search from '../Search';
-import { getMenuItems } from '../../services/movies';
 import { Nav, NavItem, Navbar, NavDropdown, MenuItem } from 'react-bootstrap';
 import './index.css';
 

@@ -4,7 +4,6 @@ import createHistory from 'history/createBrowserHistory';
 
 import Navigation from './components/Navigation';
 import { getMenuItems } from './services/movies';
-import config from './config';
 import Serials from './pages/Serials';
 import Home from './pages/Home';
 import NewFilms from './pages/NewFilms';
@@ -13,21 +12,15 @@ import SearchPage from './pages/SearchPage';
 
 class App extends Component {
   async componentDidMount() {
-    const menuItems = await getMenuItems('/index.php');
+    const menuItems = await getMenuItems();
     this.setState({ menuItems, loading: false });
-    menuItems(this.props);
-  }
-  renderMenuItems() {
-    const { menuItems } = this.state;
-    const { title, url } = menuItems;
-    return <Navigation title={title} url={url} />;
   }
   render() {
     return (
       <div>
         <Router history={createHistory()}>
           <div>
-            <Navigation menuItems={config.navMenuItems} />
+            <Navigation menuItems={this.state.menuItems} />
             <Route exact path="/" component={Home} />
             <Route path="/serials" component={Serials} />
             <Route path="/novelty" component={NewFilms} />
