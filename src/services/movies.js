@@ -172,6 +172,11 @@ export const getMenuItems = () => {
 
         if (subItems.length) {
           // Code here
+          menuItem.subItems = [];
+
+          subItems.forEach(subItem => {
+            // .... push
+          });
         }
 
         menuItems.push(menuItem);
