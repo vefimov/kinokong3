@@ -1,5 +1,6 @@
 // @flow
 import React, { Component } from 'react';
+import Search from '../Search';
 import { Nav, NavItem, Navbar, NavDropdown, MenuItem } from 'react-bootstrap';
 import './index.css';
 
@@ -47,6 +48,7 @@ class Navigation extends Component<Props> {
                   ),
               )}
             </Nav>
+            <Search />
           </Navbar.Collapse>
         </Navbar>
       </div>
