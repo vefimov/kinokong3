@@ -152,35 +152,37 @@ export const getMovieCoversGroupedByType = url => {
     });
 };
 export const getMenuItems = url => {
-  return jQuery
-    .get(`${config.kinokongUrl}${url}`)
-    .then(html => {
-      const dom = new JSDOM(html);
-      const menuElements = dom.window.document.querySelectorAll('[class*="reset top-menu"]');
+  return jQuery.get(`${config.kinokongUrl}${url}`).then(html => {
+    const dom = new JSDOM(html);
+    const menuElements = dom.window.document.querySelectorAll('[class*="reset top-menu"]');
+    const menuItems = [];
+    const menuSubItems = [];
 
-      const menuItems = [];
-
-      menuElements.forEach(element => {
-        const title = element.querySelector('ul.reset.top-menu > li').textContent;
-        const url = element.querySelector('ul.reset.top-menu > li a').href.replace('http://kinokong2.com', '/movie/');
-        const subItems = dom.window.document.querySelectorAll(
-          'ul.reset.top-menu > li span em ,ul.reset.top-menu > li span a',
-        );
-        const menuItem = {
-          title,
-          url,
-          subItems: {
-            title: subItems[0].textContent.trim(),
-            url: subItems[1].textContent.trim(),
-          },
+    menuSubItems
+      .forEach(element => {
+        const menuSubItems = {
+          subItems: element.querySelectorAll('ul.reset.top-menu > li span em ,ul.reset.top-menu > li span a'),
+          menuSubItems: [],
         };
+        menuElements.forEach(element => {
+          const title = element.querySelector('ul.reset.top-menu > li').textContent;
+          const url = element.querySelector('ul.reset.top-menu > li a').href.replace('http://kinokong2.com', '/movie/');
+          const menuItem = {
+            title,
+            url,
+            subItems: {
+              title: menuSubItems[0].textContent.trim(),
+              url: menuSubItems[1].textContent.trim(),
+            },
+          };
 
-        menuItems.push(menuItem);
+          menuItems.push(menuItem);
+        });
+
+        return menuItems;
+      })
+      .catch(error => {
+        console.error(error);
       });
-
-      return menuItems;
-    })
-    .catch(error => {
-      console.error(error);
-    });
+  });
 };
