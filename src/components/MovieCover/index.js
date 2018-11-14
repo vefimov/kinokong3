@@ -1,19 +1,15 @@
 // @flow
 import React, { PureComponent } from 'react';
+import classNames from 'classnames';
 import StarRatingComponent from 'react-star-rating-component';
 import { withRouter } from 'react-router-dom';
 
+import type { MovieCover as MovieCoverType } from '../../types';
 import './index.css';
 
-type Props = {
-  title: string,
-  coverImage: string,
-  rating: {
-    likes: string,
-    dislikes: string,
-  },
-  url: string,
+type Props = MovieCoverType & {
   history: Array<any>,
+  className?: string,
 };
 
 class MovieCover extends PureComponent<Props> {
@@ -30,11 +26,15 @@ class MovieCover extends PureComponent<Props> {
   };
 
   render() {
-    const { title, coverImage, rating } = this.props;
-    const ratingValue = (+rating.likes * 100) / (+rating.likes + +rating.dislikes) / 10;
+    const { title, coverImage, rating, className } = this.props;
+    const ratingValue = rating ? (+rating.likes * 100) / (+rating.likes + +rating.dislikes) / 10 : null;
 
     return (
-      <div className="movie-cover" onMouseDown={this.handleMouseDown} onMouseUp={this.handleMouseUp}>
+      <div
+        className={classNames('movie-cover', className)}
+        onMouseDown={this.handleMouseDown}
+        onMouseUp={this.handleMouseUp}
+      >
         <div className="image-container">
           <img className="img-responsive" src={coverImage} alt={title} width="100%" />
           <div className="overlay">
@@ -43,7 +43,7 @@ class MovieCover extends PureComponent<Props> {
         </div>
         <div className="details">
           <div className="title">{title}</div>
-          <StarRatingComponent name={title} starCount={10} value={ratingValue} />
+          {rating && <StarRatingComponent name={title} starCount={10} value={ratingValue} />}
         </div>
       </div>
     );

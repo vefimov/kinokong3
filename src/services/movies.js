@@ -61,8 +61,6 @@ export const searchMovies = (query: string) => {
         movieCovers.push(movieCover);
       });
 
-      debugger;
-
       return movieCovers;
     })
     .catch(error => {
@@ -167,17 +165,17 @@ export const getMenuItems = () => {
           title: parentLinkElement.textContent,
           url: parentLinkElement.href.replace('http://kinokong2.com', '/type/'),
         };
-
-        const subItems = parentLiElement.querySelector('> span > el > a');
-
-        if (subItems.length) {
-          // Code here
-          menuItem.subItems = [];
-
-          subItems.forEach(subItem => {
-            // .... push
-          });
-        }
+        //
+        // const subItems = parentLiElement.querySelector('> span > el > a');
+        //
+        // if (subItems.length) {
+        //   // Code here
+        //   menuItem.subItems = [];
+        //
+        //   subItems.forEach(subItem => {
+        //     // .... push
+        //   });
+        // }
 
         menuItems.push(menuItem);
         // const menuSubItems = {
