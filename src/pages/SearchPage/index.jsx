@@ -6,6 +6,8 @@ import LoadingSpinner from '../../components/LoadingSpinner';
 import MovieCoverComponent from '../../components/MovieCover';
 
 import type { MovieCover } from '../../types';
+import { Grid, Row } from 'react-bootstrap';
+import Col from 'react-bootstrap/es/Col';
 
 type Props = {
   match: {
@@ -41,14 +43,30 @@ class SearchPage extends Component<Props, State> {
     }
   }
 
+  renderSearchDetails() {
+    const { movieCovers } = this.state;
+
+    return (
+      <div>
+        <Grid>
+          <Row className="show-grid">
+            {(movieCovers: any).map(movieCover => (
+              <Col xs={6} sm={3} md={3} lg={2}>
+                <MovieCoverComponent key={movieCover.url} {...movieCover} />
+              </Col>
+            ))}
+          </Row>
+        </Grid>
+      </div>
+    );
+  }
+
   render() {
-    const { loading, movieCovers } = this.state;
+    const { loading } = this.state;
 
     if (loading) return <LoadingSpinner />;
 
-    return (movieCovers: any).map(movieCover => (
-      <MovieCoverComponent className="pull-left" key={movieCover.url} {...movieCover} />
-    ));
+    return this.renderSearchDetails();
   }
 }
 
