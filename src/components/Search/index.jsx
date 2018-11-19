@@ -1,6 +1,6 @@
 // @flow
 import React, { Component } from 'react';
-import { Navbar, FormGroup, FormControl, Button, Glyphicon } from 'react-bootstrap';
+import { Navbar, FormGroup, FormControl, Button, Glyphicon, Col } from 'react-bootstrap';
 import { withRouter } from 'react-router-dom';
 
 import './index.css';
@@ -26,6 +26,10 @@ class Search extends Component<Props, State> {
     query: '',
     input: false,
   };
+  viweSearch = () => {
+    const { input } = this.state;
+    return input ? this.setState({ input: false }) : this.setState({ input: true });
+  };
 
   handleChange = (event: SyntheticEvent<HTMLInputElement>) => {
     this.setState({ query: event.currentTarget.value });
@@ -36,25 +40,35 @@ class Search extends Component<Props, State> {
 
     this.props.history.push(`/search/${this.state.query}`);
   };
-  viweSearch = () => {
-    const { input, query } = this.state;
-    return input ? this.setState({ input: false }) : this.setState({ input: true });
-  };
+  inputSearch() {
+    const { query } = this.state;
+
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <Col xs={10} sm={10} lg={10} md={10}>
+          <FormControl type="search" placeholder="Поиск" defaultValue={query} onChange={this.handleChange} required />
+        </Col>
+        <Col xs={2} sm={2} lg={2} md={2}>
+          <Button type="submit">
+            <Glyphicon glyph="glyphicon glyphicon-search" />
+          </Button>
+        </Col>
+      </form>
+    );
+  }
 
   renderSearch() {
-    const { query, input } = this.state;
+    const { input } = this.state;
 
     return input ? (
-      <form onSubmit={this.handleSubmit}>
+      <div>
         <Navbar.Form pullLeft>
-          <FormGroup>
-            <FormControl type="search" placeholder="Поиск" defaultValue={query} onChange={this.handleChange} required />
-          </FormGroup>{' '}
           <Button type="submit" onClick={this.viweSearch}>
             <Glyphicon glyph="glyphicon glyphicon-search" />
           </Button>
         </Navbar.Form>
-      </form>
+        {this.inputSearch()}
+      </div>
     ) : (
       <Navbar.Form pullLeft>
         <Button type="submit" onClick={this.viweSearch}>
