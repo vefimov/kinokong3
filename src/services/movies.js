@@ -167,7 +167,7 @@ export const getMenuItems = () => {
           url: parentLinkElement.href.replace('http://kinokong2.com', '/type/'),
         };
 
-        const subItems = parentLiElement.querySelector('> span > el > a');
+        const subItems = parentLiElement.querySelectorAll('span a');
 
         if (subItems.length) {
           menuItem.subItems = [];
@@ -177,6 +177,7 @@ export const getMenuItems = () => {
               title: subItem.textContent,
               url: subItem.href.replace('http://kinokong2.com', '/type/'),
             };
+
             menuItem.subItems.push(menuSubItem);
           });
         }
