@@ -159,7 +159,6 @@ export const getMenuItems = () => {
       const dom = new JSDOM(html);
       const parentLiElements = dom.window.document.querySelectorAll('ul.reset.top-menu > li');
       const menuItems: MenuItem[] = [];
-      // const menuSubItems = [];
 
       parentLiElements.forEach(parentLiElement => {
         const parentLinkElement = parentLiElement.querySelector('a');
@@ -171,34 +170,17 @@ export const getMenuItems = () => {
         const subItems = parentLiElement.querySelector('> span > el > a');
 
         if (subItems.length) {
-          // Code here
           menuItem.subItems = [];
 
           subItems.forEach(subItem => {
-            // .... push
+            const menuSubItem: subItems = {
+              title: subItem.textContent,
+              url: subItem.href.replace('http://kinokong2.com', '/type/'),
+            };
+            menuItem.subItems.push(menuSubItem);
           });
         }
-
         menuItems.push(menuItem);
-        // const menuSubItems = {
-        //   subItems: parentElement.querySelectorAll('ul.reset.top-menu > li span em, ul.reset.top-menu > li span a'),
-        //   menuSubItems: [],
-        // };
-        //
-        // parentMenuItems.forEach(element => {
-        //   const title = element.querySelector('ul.reset.top-menu > li').textContent;
-        //   const url = element.querySelector('ul.reset.top-menu > li a').href.replace('http://kinokong2.com', '/movie/');
-        //   const menuItem = {
-        //     title,
-        //     url,
-        //     subItems: {
-        //       title: menuSubItems[0].textContent.trim(),
-        //       url: menuSubItems[1].textContent.trim(),
-        //     },
-        //   };
-        //
-        //   menuItems.push(menuItem);
-        // });
       });
 
       return menuItems;
