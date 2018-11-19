@@ -17,3 +17,7 @@
 .navbar .header-section .headline {
   padding-top: 15px;
 }
+
+.search-panel {
+  position: relative;
+}

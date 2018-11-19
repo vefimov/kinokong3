@@ -18,17 +18,11 @@ type Props = {
 
 type State = {
   query: string,
-  input: boolean,
 };
 
 class Search extends Component<Props, State> {
   state = {
     query: '',
-    input: false,
-  };
-  viweSearch = () => {
-    const { input } = this.state;
-    return input ? this.setState({ input: false }) : this.setState({ input: true });
   };
 
   handleChange = (event: SyntheticEvent<HTMLInputElement>) => {
@@ -40,7 +34,8 @@ class Search extends Component<Props, State> {
 
     this.props.history.push(`/search/${this.state.query}`);
   };
-  inputSearch() {
+
+  renderSearch() {
     const { query } = this.state;
 
     return (
@@ -54,27 +49,6 @@ class Search extends Component<Props, State> {
           </Button>
         </Col>
       </form>
-    );
-  }
-
-  renderSearch() {
-    const { input } = this.state;
-
-    return input ? (
-      <div>
-        <Navbar.Form pullLeft>
-          <Button type="submit" onClick={this.viweSearch}>
-            <Glyphicon glyph="glyphicon glyphicon-search" />
-          </Button>
-        </Navbar.Form>
-        {this.inputSearch()}
-      </div>
-    ) : (
-      <Navbar.Form pullLeft>
-        <Button type="submit" onClick={this.viweSearch}>
-          <Glyphicon glyph="glyphicon glyphicon-search" />
-        </Button>
-      </Navbar.Form>
     );
   }
 
