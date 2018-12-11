@@ -3,6 +3,7 @@ import { JSDOM } from 'jsdom';
 import jQuery from 'jquery';
 
 import config from '../config';
+import type { MenuItem } from '../types';
 import { unicodeToWin1251 } from './utils';
 
 // $FlowFixMe
@@ -50,22 +51,15 @@ export const searchMovies = (query: string) => {
         const coverImage = element.querySelector('.main-sliders-img > img').src;
         const title = element.querySelector('.main-sliders-title').textContent;
         const url = element.querySelector('.main-sliders-bg > a').href.replace('http://kinokong2.com', '/movie');
-        const ratingElements = element.querySelectorAll('.main-sliders-rate a');
 
         const movieCover = {
           coverImage,
           title,
           url,
-          // rating: {
-          //   likes: ratingElements[0].textContent.trim(),
-          //   dislikes: ratingElements[1].textContent.trim(),
-          // },
         };
 
         movieCovers.push(movieCover);
       });
-
-      debugger;
 
       return movieCovers;
     })
@@ -151,6 +145,61 @@ export const getMovieCoversGroupedByType = url => {
       });
 
       return movieCoversGroupedByType;
+    })
+    .catch(error => {
+      console.error(error);
+    });
+};
+export const getMenuItems = () => {
+  return jQuery
+    .get(`${config.kinokongUrl}/index.php`)
+    .then(html => {
+      const dom = new JSDOM(html);
+      const parentLiElements = dom.window.document.querySelectorAll('ul.reset.top-menu > li');
+      const menuItems: MenuItem[] = [];
+      // const menuSubItems = [];
+
+      parentLiElements.forEach(parentLiElement => {
+        const parentLinkElement = parentLiElement.querySelector('a');
+        const menuItem: MenuItem = {
+          title: parentLinkElement.textContent,
+          url: parentLinkElement.href.replace('http://kinokong2.com', '/type/'),
+        };
+        //
+        // const subItems = parentLiElement.querySelector('> span > el > a');
+        //
+        // if (subItems.length) {
+        //   // Code here
+        //   menuItem.subItems = [];
+        //
+        //   subItems.forEach(subItem => {
+        //     // .... push
+        //   });
+        // }
+
+        menuItems.push(menuItem);
+        // const menuSubItems = {
+        //   subItems: parentElement.querySelectorAll('ul.reset.top-menu > li span em, ul.reset.top-menu > li span a'),
+        //   menuSubItems: [],
+        // };
+        //
+        // parentMenuItems.forEach(element => {
+        //   const title = element.querySelector('ul.reset.top-menu > li').textContent;
+        //   const url = element.querySelector('ul.reset.top-menu > li a').href.replace('http://kinokong2.com', '/movie/');
+        //   const menuItem = {
+        //     title,
+        //     url,
+        //     subItems: {
+        //       title: menuSubItems[0].textContent.trim(),
+        //       url: menuSubItems[1].textContent.trim(),
+        //     },
+        //   };
+        //
+        //   menuItems.push(menuItem);
+        // });
+      });
+
+      return menuItems;
     })
     .catch(error => {
       console.error(error);
