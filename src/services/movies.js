@@ -50,7 +50,7 @@ export const searchMovies = (query: string) => {
       movieElements.forEach(element => {
         const coverImage = element.querySelector('.main-sliders-img > img').src;
         const title = element.querySelector('.main-sliders-title').textContent;
-        const url = element.querySelector('.main-sliders-bg > a').href.replace('http://kinokong2.com', '/movie');
+        const url = element.querySelector('.main-sliders-bg > a').href.replace('http://kinokong.net', '/movie');
 
         const movieCover = {
           coverImage,
@@ -80,7 +80,7 @@ export const getMovieCovers = url => {
       movieElements.forEach(element => {
         const coverImage = element.querySelector('.main-sliders-img > img').src;
         const title = element.querySelector('.main-sliders-title').textContent;
-        const url = element.querySelector('.main-sliders-bg > a').href.replace('http://kinokong2.com', '/movie');
+        const url = element.querySelector('.main-sliders-bg > a').href.replace('http://kinokong.net', '/movie');
         const ratingElements = element.querySelectorAll('.main-sliders-rate a');
 
         const movieCover = {
@@ -125,7 +125,7 @@ export const getMovieCoversGroupedByType = url => {
         movieElements.forEach(element => {
           const coverImage = element.querySelector('.main-sliders-img > img').src;
           const title = element.querySelector('.main-sliders-title').textContent;
-          const url = element.querySelector('.main-sliders-bg > a').href.replace('http://kinokong2.com', '/movie');
+          const url = element.querySelector('.main-sliders-bg > a').href.replace('http://kinokong.net', '/movie');
           const ratingElements = element.querySelectorAll('.main-sliders-rate a');
 
           const movieCover = {
@@ -157,46 +157,29 @@ export const getMenuItems = () => {
       const dom = new JSDOM(html);
       const parentLiElements = dom.window.document.querySelectorAll('ul.reset.top-menu > li');
       const menuItems: MenuItem[] = [];
-      // const menuSubItems = [];
 
       parentLiElements.forEach(parentLiElement => {
         const parentLinkElement = parentLiElement.querySelector('a');
         const menuItem: MenuItem = {
           title: parentLinkElement.textContent,
-          url: parentLinkElement.href.replace('http://kinokong2.com', '/type/'),
+          url: parentLinkElement.href.replace('http://kinokong.net', '/type/'),
         };
-        //
-        // const subItems = parentLiElement.querySelector('> span > el > a');
-        //
-        // if (subItems.length) {
-        //   // Code here
-        //   menuItem.subItems = [];
-        //
-        //   subItems.forEach(subItem => {
-        //     // .... push
-        //   });
-        // }
 
+        const subItems = parentLiElement.querySelectorAll('span a');
+
+        if (subItems.length) {
+          menuItem.subItems = [];
+
+          subItems.forEach(subItem => {
+            const menuSubItem: subItems = {
+              title: subItem.textContent,
+              url: subItem.href.replace('http://kinokong.net', '/type/'),
+            };
+
+            menuItem.subItems.push(menuSubItem);
+          });
+        }
         menuItems.push(menuItem);
-        // const menuSubItems = {
-        //   subItems: parentElement.querySelectorAll('ul.reset.top-menu > li span em, ul.reset.top-menu > li span a'),
-        //   menuSubItems: [],
-        // };
-        //
-        // parentMenuItems.forEach(element => {
-        //   const title = element.querySelector('ul.reset.top-menu > li').textContent;
-        //   const url = element.querySelector('ul.reset.top-menu > li a').href.replace('http://kinokong2.com', '/movie/');
-        //   const menuItem = {
-        //     title,
-        //     url,
-        //     subItems: {
-        //       title: menuSubItems[0].textContent.trim(),
-        //       url: menuSubItems[1].textContent.trim(),
-        //     },
-        //   };
-        //
-        //   menuItems.push(menuItem);
-        // });
       });
 
       return menuItems;
