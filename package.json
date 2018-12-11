@@ -57,7 +57,7 @@
       ]
     }
   },
-  "proxy": "http://kinokong2.com",
+  "proxy": "http://kinokong.net",
   "prettier": {
     "bracketSpacing": true,
     "printWidth": 120,
