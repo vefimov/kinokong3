@@ -61,8 +61,6 @@ export const searchMovies = (query: string) => {
         movieCovers.push(movieCover);
       });
 
-      debugger;
-
       return movieCovers;
     })
     .catch(error => {
